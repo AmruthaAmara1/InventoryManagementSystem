@@ -1,6 +1,5 @@
-﻿using System;
+﻿using InventoryManagementSystem.Data;
 using System.Windows;
-using InventoryManagementSystem.Data;
 
 namespace InventoryManagementSystem
 {

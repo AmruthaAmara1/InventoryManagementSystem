@@ -13,7 +13,7 @@
         <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     </UserControl.Resources>
 
-    <Grid Margin="40">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*" />
@@ -43,15 +43,15 @@
                     VerticalAlignment="Top" 
                     CanUserAddRows="False" 
                     SelectionMode="Extended"
-                    HeadersVisibility="Column"> 
+                    HeadersVisibility="Column">
 
                         <DataGrid.Columns>
 
                             <!-- Other columns -->
-                            <DataGridTextColumn Header="ID" Binding="{Binding ProductId}" Width="80" />
+                            <DataGridTextColumn Header="ID" Binding="{Binding ProductId}" Width="82" />
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="220.5" />
-                            <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="175" />
-                            <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="175" />
+                            <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="190" />
+                            <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="190" />
                         </DataGrid.Columns>
                     </DataGrid>
 

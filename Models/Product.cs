@@ -1,12 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InventoryManagementSystem.Models
 {
-    public class Product
+    public class Product : INotifyPropertyChanged
     {
-        [Key] // Primary Key
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Enables Auto-Increment
+        private int _quantity;
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProductId { get; set; }
 
         [Required]
@@ -16,6 +19,23 @@ namespace InventoryManagementSystem.Models
         public decimal Price { get; set; }
 
         [Required]
-        public int Quantity { get; set; }
+        public int Quantity
+        {
+            get => _quantity;
+            set
+            {
+                if (_quantity != value)
+                {
+                    _quantity = value;
+                    OnPropertyChanged(nameof(Quantity));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

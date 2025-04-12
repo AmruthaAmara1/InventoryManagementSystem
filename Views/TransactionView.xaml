@@ -1,0 +1,142 @@
+﻿<UserControl x:Class="InventoryManagementSystem.Views.TransactionView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vmt="clr-namespace:InventoryManagementSystem.ViewModels"
+    xmlns:convt="clr-namespace:InventoryManagementSystem.Converters"
+    Background="#F7F7F7">
+
+    <UserControl.DataContext>
+        <vmt:TransactionViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <convt:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Transaction Management" FontSize="28" FontWeight="SemiBold" Foreground="#333333" 
+                   HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+        <Border Grid.Row="1" Background="White" BorderBrush="#E0E0E0" BorderThickness="1" Padding="25" CornerRadius="8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Side: DataGrid Section -->
+                <Grid Grid.Column="0">
+                    <DataGrid x:Name="TransactionDataGrid" 
+                        SelectionChanged="TransactionDataGrid_SelectionChanged"
+                        ItemsSource="{Binding Transactions}" 
+                        AutoGenerateColumns="False"
+                        Height="350" 
+                        Background="#F8F8F8" 
+                        BorderBrush="#E0E0E0" 
+                        BorderThickness="1" 
+                        GridLinesVisibility="None" 
+                        AlternatingRowBackground="#F0F0F0" 
+                        VerticalAlignment="Top" 
+                        CanUserAddRows="False" 
+                        SelectionMode="Extended"
+                        HeadersVisibility="Column">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding TransactionId}" Width="40"/>
+                            <DataGridTextColumn Header="Product Name" Binding="{Binding Product.Name}" Width="190"/>
+                            <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="65"/>
+                            <DataGridTextColumn Header="Total Price" Binding="{Binding TotalPrice,Mode=OneWay}" Width="80"/>
+                            <DataGridTextColumn Header="Cost Price" Binding="{Binding CostPrice}" Width="80"/>
+                            <DataGridTextColumn Header="Selling Price" Binding="{Binding SellingPrice}" Width="80"/>
+                            <DataGridTextColumn Header="Profit" Binding="{Binding Profit}" Width="80"/>
+                            <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=d}" Width="90"/>
+                            <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="90"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                </Grid>
+
+                <!-- Right Side: Form Section -->
+                <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Width="350" Margin="0,0,0,0">
+
+                    <StackPanel Orientation="Horizontal" Margin="0,8" Visibility="{Binding IsAddVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock Text="Product ID" FontSize="12" Foreground="#333333" VerticalAlignment="Center" Width="120"/>
+                        <TextBox x:Name="ProductIdInput" Height="38" Padding="12" BorderBrush="#DDDDDD" BorderThickness="1" 
+                                 Background="White" FontSize="10" VerticalContentAlignment="Center" Width="200"
+                                 TextChanged="ProductIdInput_TextChanged"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,8" Visibility="{Binding IsAddVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock Text="Quantity" FontSize="12" Foreground="#333333" VerticalAlignment="Center" Width="120"/>
+                        <TextBox x:Name="QuantityInput" Height="38" Padding="12" BorderBrush="#DDDDDD" BorderThickness="1" 
+                                 Background="White" FontSize="10" VerticalContentAlignment="Center" Width="200"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,8" Visibility="{Binding IsAddVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock Text="Cost Price" FontSize="12" Foreground="#333333" VerticalAlignment="Center" Width="120"/>
+                        <TextBox x:Name="CostPriceInput" Height="38" Padding="12" BorderBrush="#DDDDDD" BorderThickness="1" 
+             Background="White" FontSize="10" VerticalContentAlignment="Center" Width="200"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,8" Visibility="{Binding IsAddVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock Text="Transaction Type" FontSize="12" Foreground="#333333" VerticalAlignment="Center" Width="120"/>
+                        <ComboBox x:Name="TransactionTypeComboBox"
+Height="24" Width="200" FontSize="10"
+SelectionChanged="TransactionTypeComboBox_SelectionChanged"
+ItemsSource="{Binding TypeOptions}" />
+                        <!-- Bind to a list of Sale/Purchase options -->
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Horizontal" Margin="0,8" Visibility="{Binding IsAddVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock Text="Selling Price" FontSize="12" Foreground="#333333" VerticalAlignment="Center" Width="120"/>
+                        <TextBox x:Name="SellingPriceInput" Height="38" Padding="12" BorderBrush="#DDDDDD" BorderThickness="1" 
+             Background="White" FontSize="10" VerticalContentAlignment="Center" Width="200"/>
+                    </StackPanel>
+
+                    
+
+                    <StackPanel Orientation="Horizontal" Margin="0,8" Visibility="{Binding IsAddVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock Text="Date" FontSize="12" Foreground="#333333" VerticalAlignment="Center" Width="120"/>
+                        <DatePicker x:Name="TransactionDateInput" Height="42" Padding="12" BorderBrush="#DDDDDD" BorderThickness="1" 
+                                    Background="White" FontSize="10" Width="200"/>
+                    </StackPanel>
+
+                    
+                    
+                    <!-- Action Buttons -->
+                    <StackPanel Margin="0,20" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <Button Content="Clear" Height="28" Width="200" Margin="0,8" FontSize="14" FontWeight="Bold" 
+                            Background="#2196F3" Foreground="White" BorderBrush="#2196F3" BorderThickness="1"
+                               Click="ClearFields_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="#2196F3" BorderBrush="#2196F3" BorderThickness="1" CornerRadius="8">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Content="Add Transaction" Height="28" Width="200" Margin="0,8" FontSize="14" FontWeight="Bold" 
+                                Background="#4CAF50" Foreground="White" BorderBrush="#4CAF50" BorderThickness="1"
+                                Click="AddTransaction_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="#4CAF50" BorderBrush="#4CAF50" BorderThickness="1" CornerRadius="8">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

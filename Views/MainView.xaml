@@ -16,9 +16,6 @@
             <TabItem Header="Transactions">
                 <views:TransactionView/>
             </TabItem>
-            <TabItem Header="Users">
-                <views:UserView/>
-            </TabItem>
             <TabItem Header="Reports">
                 <views:ReportView/>
             </TabItem>

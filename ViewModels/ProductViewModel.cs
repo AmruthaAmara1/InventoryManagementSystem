@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows.Controls;
-using InventoryManagementSystem.Models;
+﻿using InventoryManagementSystem.Models;
 using InventoryManagementSystem.Services;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace InventoryManagementSystem.ViewModels
 {
@@ -33,7 +33,7 @@ namespace InventoryManagementSystem.ViewModels
                 {
                     _selectedProduct = value;
                     OnPropertyChanged(nameof(SelectedProduct));
-                    IsAddVisible = _selectedProduct != null; 
+                    IsAddVisible = _selectedProduct != null;
                 }
             }
         }
@@ -55,7 +55,7 @@ namespace InventoryManagementSystem.ViewModels
         {
             if (Products != null && Products.Count > 0)
             {
-                SelectedProduct = Products.FirstOrDefault(); 
+                SelectedProduct = Products.FirstOrDefault();
                 IsAddVisible = SelectedProduct != null; // To display the text fields only, if there is a selected product
             }
             else

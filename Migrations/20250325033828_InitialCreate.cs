@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -32,7 +31,10 @@ namespace InventoryManagementSystem.Migrations
                 {
                     ReportId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    GeneratedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    TotalSales = table.Column<int>(nullable: false),
+                    TotalRevenue = table.Column<decimal>(nullable: false),
+                    TotalProductsSold = table.Column<int>(nullable: false),
                     ReportType = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -55,21 +57,6 @@ namespace InventoryManagementSystem.Migrations
                 {
                     table.PrimaryKey("PK_Transactions", x => x.TransactionId);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Username = table.Column<string>(type: "TEXT", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: false),
-                    Role = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.UserId);
-                });
         }
 
         /// <inheritdoc />
@@ -83,9 +70,6 @@ namespace InventoryManagementSystem.Migrations
 
             migrationBuilder.DropTable(
                 name: "Transactions");
-
-            migrationBuilder.DropTable(
-                name: "Users");
         }
     }
 }
