@@ -1,0 +1,78 @@
+﻿# Build results
+bin/
+obj/
+*.exe
+*.dll
+*.app
+*.log
+
+# VS folders
+.vs/
+.vscode/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# DotCover
+.idea/
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# Rider
+.idea/
+
+# Windows image thumbnail cache files
+Thumbs.db
+
+# Entity Framework Migrations build artifacts
+*Migrations*/_*.cs
+
+# NUGET packages
+*.nupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# Runtime and publish folders
+publish/
+out/
+artifacts/
+
+# PDFSharp cache
+*.pdf.cache
+
+# CSVHelper temp
+*.csv.tmp
+
+# EPPlus temp
+*.xlsx.tmp
+
+# JetBrains Rider
+.idea/
+
+# Ignore database files (optional if local dev only)
+*.mdf
+*.ldf
+
+# Ignore all test results
+TestResults/
+
+# Ignore compiled styles
+*.g.cs
+*.g.i.cs
+*.i.cs
+
+# Ignore generated code-behind files
+*.designer.cs
+
+# Ignore database context snapshot if using EF Core
+Migrations/*Snapshot.cs
+
+# Ignore config secrets
+secrets.json
+appsettings.Development.json
