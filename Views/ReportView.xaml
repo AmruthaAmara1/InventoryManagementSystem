@@ -94,11 +94,7 @@
 
                     <Button Content="Export CSV" Height="28" Width="200" Margin="0,8" FontSize="13" 
                             Background="#2196F3" Foreground="White" BorderBrush="#2196F3" Click="ExportCsv_Click"/>
-                    <Button Content="Export Excel" Height="28" Width="200" Margin="0,8" FontSize="13" 
-                            Background="#FF9800" Foreground="White" BorderBrush="#FF9800" Click="ExportExcel_Click"/>
-                    <Button Content="Export PDF" Height="28" Width="200" Margin="0,8" FontSize="13" 
-                            Background="#9C27B0" Foreground="White" BorderBrush="#9C27B0" Click="ExportPdf_Click"/>
-                </StackPanel>
+                    </StackPanel>
             </Grid>
         </Border>
     </Grid>
